@@ -2,11 +2,17 @@ using BidCalculation.Application.Factories;
 using BidCalculation.Application.UseCases;
 using BidCalculation.Domain.Repositories;
 using BidCalculation.Domain.Strategies;
+using BidCalculation.Infrastructure.Data;
 using BidCalculation.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<BidCalculationDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 builder.Services.AddScoped<IBidRepository, BidRepository>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();

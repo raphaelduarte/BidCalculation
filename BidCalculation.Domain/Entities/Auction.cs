@@ -4,6 +4,7 @@ namespace BidCalculation.Domain.Entities;
 
 public class Auction : Entity
 {
+    public Auction() { }
     public Auction(DateTime startDateTime, DateTime endDateTime)
     {
         StartDate = startDateTime;
