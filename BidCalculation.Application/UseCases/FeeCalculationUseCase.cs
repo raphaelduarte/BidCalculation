@@ -19,9 +19,9 @@ public class FeeCalculationUseCase
         _feeCalculatorFactory = feeCalculatorFactory;
     }
 
-    public async Task<decimal> Execute(int vehicleId)
+    public async Task<decimal> Execute(Guid vehicleId)
     {
-        var vehicle = await _vehicleRepository.GetByIdAsync(vehicleId);
+        var vehicle = await _vehicleRepository.FindByIdAsync(vehicleId);
         if (vehicle == null)
         {
             throw new ArgumentException("Vehicle not found");
