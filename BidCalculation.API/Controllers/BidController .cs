@@ -1,4 +1,6 @@
-﻿using BidCalculation.Domain.Entities;
+﻿using BidCalculation.API.Requests;
+using BidCalculation.API.Responses;
+using BidCalculation.Domain.Entities;
 using BidCalculation.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +25,16 @@ public class BidController : ControllerBase
         {
             return NotFound("Bid not found.");
         }
-        return Ok(bid);
+
+        var response = new BidResponse
+        {
+            Id = bid.Id,
+            BasePrice = bid.BasePrice.Amount,
+            VehicleType = bid.VehicleType,
+            AuctionId = bid.AuctionId
+        };
+
+        return Ok(response);
     }
 
     [HttpGet]
@@ -52,10 +63,21 @@ public class BidController : ControllerBase
 
 
     [HttpPost]
-    public async Task<IActionResult> CreateBid(Bid bid)
+    public async Task<IActionResult> CreateBid([FromBody] BidRequest request)
     {
+        var bid = new Bid(request.BasePrice, request.VehicleType, request.AuctionId);
+
         await _bidRepository.AddAsync(bid);
-        return CreatedAtAction(nameof(GetBidById), new { id = bid.Id }, bid);
+
+        var response = new BidResponse
+        {
+            Id = bid.Id,
+            BasePrice = bid.BasePrice.Amount,
+            VehicleType = bid.VehicleType,
+            AuctionId = bid.AuctionId
+        };
+
+        return CreatedAtAction(nameof(GetBidById), new { id = bid.Id }, response);
     }
 
 
