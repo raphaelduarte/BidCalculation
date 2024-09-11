@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 // Add services to the container.
 
 builder.Services.AddDbContext<BidCalculationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+        options.UseInMemoryDatabase("BidCalculationInMemoryDb"));
 
 
 builder.Services.AddScoped<IBidRepository, BidRepository>();
