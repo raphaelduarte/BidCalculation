@@ -13,8 +13,6 @@ public class BidCalculationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-
         modelBuilder.Entity<Vehicle>()
             .HasOne(v => v.Auction)
             .WithMany(a => a.Vehicles)
