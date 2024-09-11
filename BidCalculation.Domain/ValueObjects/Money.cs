@@ -1,6 +1,6 @@
 ﻿using BidCalculation.Domain.Core;
 
-namespace BidCalculation.Domain.Entities;
+namespace BidCalculation.Domain.ValueObjects;
 
 public class Money : Entity
 {
