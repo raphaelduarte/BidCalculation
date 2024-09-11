@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BidCalculation.Domain": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
