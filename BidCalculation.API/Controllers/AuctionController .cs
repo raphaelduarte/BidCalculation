@@ -1,4 +1,6 @@
-﻿using BidCalculation.Application.UseCases;
+﻿using BidCalculation.API.Requests;
+using BidCalculation.API.Responses;
+using BidCalculation.Application.UseCases;
 using BidCalculation.Domain.Entities;
 using BidCalculation.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -26,14 +28,32 @@ public class AuctionController : ControllerBase
         {
             return NotFound("Auction not found.");
         }
-        return Ok(auction);
+
+        var response = new AuctionResponse
+        {
+            Id = auction.Id,
+            StartDate = auction.StartDate,
+            EndDate = auction.EndDate
+        };
+
+        return Ok(response);
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateAuction(Auction auction)
+    public async Task<IActionResult> CreateAuction([FromBody] AuctionRequest request)
     {
+        var auction = new Auction(request.StartDate, request.EndDate);
+
         await _auctionRepository.AddAsync(auction);
-        return CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, auction);
+
+        var response = new AuctionResponse
+        {
+            Id = auction.Id,
+            StartDate = auction.StartDate,
+            EndDate = auction.EndDate
+        };
+
+        return CreatedAtAction(nameof(GetAuctionById), new { id = auction.Id }, response);
     }
 
     [HttpPost("{id}/calculate-fee")]
@@ -51,7 +71,7 @@ public class AuctionController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAuction(Guid id, Auction updatedAuction)
+    public async Task<IActionResult> UpdateAuction(Guid id, [FromBody] AuctionRequest request)
     {
         var auction = await _auctionRepository.FindByIdAsync(id);
         if (auction == null)
@@ -59,8 +79,8 @@ public class AuctionController : ControllerBase
             return NotFound("Auction not found.");
         }
 
-        auction.StartDate = updatedAuction.StartDate;
-        auction.EndDate = updatedAuction.EndDate;
+        auction.StartDate = request.StartDate;
+        auction.EndDate = request.EndDate;
 
         await _auctionRepository.UpdateAsync(auction);
 
