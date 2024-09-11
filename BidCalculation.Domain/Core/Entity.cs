@@ -12,7 +12,7 @@ namespace BidCalculation.Domain.Core
         {
             Id = Guid.NewGuid();
         }
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || !(obj is Entity))
                 return false;
@@ -20,6 +20,13 @@ namespace BidCalculation.Domain.Core
             var entity = (Entity)obj;
             return Id == entity.Id;
         }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+
+
         public Guid Id { get; protected set; }
     }
 }

@@ -20,7 +20,7 @@ public class BidRepository : IBidRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Bid> FindByIdAsync(Guid id)
+    public async Task<Bid?> FindByIdAsync(Guid id)
     {
         return await _context.Bids.FindAsync(id);
     }
@@ -33,6 +33,12 @@ public class BidRepository : IBidRepository
     public async Task UpdateAsync(Bid bid)
     {
         _context.Bids.Update(bid);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Bid bid)
+    {
+        _context.Bids.Remove(bid);
         await _context.SaveChangesAsync();
     }
 }

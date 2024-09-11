@@ -20,7 +20,7 @@ public class AuctionRepository : IAuctionRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Auction> FindByIdAsync(Guid id)
+    public async Task<Auction?> FindByIdAsync(Guid id)
     {
         return await _context.Auctions.FindAsync(id);
     }
@@ -33,6 +33,12 @@ public class AuctionRepository : IAuctionRepository
     public async Task UpdateAsync(Auction auction)
     {
         _context.Auctions.Update(auction);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Auction auction)
+    {
+        _context.Auctions.Remove(auction);
         await _context.SaveChangesAsync();
     }
 }

@@ -20,7 +20,7 @@ public class VehicleRepository : IVehicleRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Vehicle> FindByIdAsync(Guid id)
+    public async Task<Vehicle?> FindByIdAsync(Guid id)
     {
         return await _context.Vehicles.FindAsync(id);
     }
@@ -33,6 +33,13 @@ public class VehicleRepository : IVehicleRepository
     public async Task UpdateAsync(Vehicle vehicle)
     {
         _context.Vehicles.Update(vehicle);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Vehicle vehicle)
+    {
+
+        _context.Vehicles.Remove(vehicle);
         await _context.SaveChangesAsync();
     }
 }
