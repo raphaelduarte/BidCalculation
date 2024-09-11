@@ -1,10 +1,17 @@
 using BidCalculation.Application.Factories;
 using BidCalculation.Application.UseCases;
+using BidCalculation.Domain.Repositories;
 using BidCalculation.Domain.Strategies;
+using BidCalculation.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddScoped<IBidRepository, BidRepository>();
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddScoped<IAuctionRepository, AuctionRepository>();
+
 builder.Services.AddTransient<CommonVehicleFeeCalculator>();
 builder.Services.AddTransient<LuxuryVehicleFeeCalculator>();
 

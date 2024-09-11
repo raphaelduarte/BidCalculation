@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,5 +19,10 @@ namespace BidCalculation.Domain.Entities
 
         public decimal BasePrice { get; private set; }
         public VehicleType VehicleType { get; private set; }
+
+        [ForeignKey("AuctionId")]
+        public Guid AuctionId { get; set; }
+        public Auction Auction { get; set; }
+        
     }
 }
