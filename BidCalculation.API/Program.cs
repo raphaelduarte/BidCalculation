@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
+
 // Add services to the container.
 
 builder.Services.AddDbContext<BidCalculationDbContext>(options =>
