@@ -6,8 +6,8 @@ namespace BidCalculation.Domain.Entities;
 
 public class Bid : Entity
 {
-    public Money BasePrice { get; private set; }
-    public VehicleType VehicleType { get; private set; }
+    public Money BasePrice { get; set; }
+    public VehicleType VehicleType { get; set; }
 
 
     [ForeignKey("AuctionId")]

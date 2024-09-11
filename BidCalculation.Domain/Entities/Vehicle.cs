@@ -17,8 +17,8 @@ namespace BidCalculation.Domain.Entities
             VehicleType = vehicleType;
         }
 
-        public decimal BasePrice { get; private set; }
-        public VehicleType VehicleType { get; private set; }
+        public decimal BasePrice { get; set; }
+        public VehicleType VehicleType { get; set; }
 
         [ForeignKey("AuctionId")]
         public Guid AuctionId { get; set; }
