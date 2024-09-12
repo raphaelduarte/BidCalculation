@@ -1,11 +1,9 @@
-﻿using BidCalculation.Domain.Core;
+﻿using BidCalculation.Domain.Enums;
 
 namespace BidCalculation.Domain.Entities;
 
-public class Fee : Entity
+public class Fee
 {
-    public decimal BuyerFee { get; private set; }
-    public decimal SellerFee { get; private set; }
-    public decimal AssociationFee { get; private set; }
-    public decimal StorageFee { get; private set; }
+    public FeeType FeeType { get; set; }
+    public decimal Amount { get; set; }
 }
