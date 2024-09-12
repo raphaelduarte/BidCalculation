@@ -1,39 +1,32 @@
-using BidCalculation.Application.Factories;
-using BidCalculation.Application.UseCases;
-using BidCalculation.Domain.Repositories;
-using BidCalculation.Domain.Strategies;
-using BidCalculation.Infrastructure.Data;
-using BidCalculation.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
+using BidCalculation.Domain.Interfaces;
+using BidCalculation.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
 // Add services to the container.
 
-builder.Services.AddDbContext<BidCalculationDbContext>(options =>
-        options.UseInMemoryDatabase("BidCalculationInMemoryDb"));
-
-
-builder.Services.AddScoped<IBidRepository, BidRepository>();
-builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
-builder.Services.AddScoped<IAuctionRepository, AuctionRepository>();
-
-builder.Services.AddTransient<CommonVehicleFeeCalculator>();
-builder.Services.AddTransient<LuxuryVehicleFeeCalculator>();
-
-builder.Services.AddTransient<FeeCalculatorFactory>();
-
-builder.Services.AddTransient<FeeCalculationUseCase>();
-
-
+builder.Services.AddScoped<ICalculationService, CalculationService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
