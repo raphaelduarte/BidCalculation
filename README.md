@@ -4,31 +4,19 @@
 
 The **BidCalculation** project is designed to calculate the total price for a vehicle at an auction, including various dynamic fees based on the vehicle type (Common or Luxury). This project follows a **Domain-Driven Design (DDD)** approach, utilizing the **.NET 8.0** framework for backend services and **Vue.js 3 with TypeScript** for frontend development.
 
-The system is divided into four main layers:
+The system is divided into 3 main layers:
 - **Domain**: Contains core business logic, entities, value objects, and services.
-- **Application**: Responsible for orchestrating use cases and interacting with the Domain layer.
-- **Infrastructure**: Provides implementations for repositories and handles database interaction.
 - **API**: Exposes REST APIs for external clients, like the frontend.
-
-## Technologies
-
-- **Backend**: .NET 8.0 (C#)
-- **Frontend**: Vue.js 3, TypeScript, Pinia for state management
-- **Database**: SQLite
-- **Design Pattern**: Strategy pattern applied for fee calculation
-- **Architecture**: Domain-Driven Design (DDD)
-
-## Folder Structure
-
-/BidCalculation.sln ├── /BidCalculation.Domain # Core business logic and domain entities ├── /BidCalculation.Application # Application use cases and services ├── /BidCalculation.Infrastructure # Database and repository implementations ├── /BidCalculation.API # REST API project ├── .gitignore # Git ignore rules └── README.md # Project documentation
+- **Tests**: Contains unit and integration tests to ensure code quality
 
 ## Getting Started
+
+
 
 ### Prerequisites
 
 - **.NET 8.0 SDK**: Ensure that .NET 8.0 is installed on your machine.
 - **Node.js**: For the Vue.js frontend development.
-- **SQLite**: No setup required, as the project will create the SQLite database file during runtime.
 
 ### Running the Application
 
@@ -42,7 +30,16 @@ The system is divided into four main layers:
 	```bash
 	dotnet build
 	dotnet run
-4.	The API should now be running on http://localhost:5000
+4.	The API should now be running on https://localhost:7209
+5.	**Navigate to the frontend**:
+   	```bash
+    	cd bid-calculation-ui
+6.	**Install dependencies**:
+   	```bash
+    	npm install
+7.	**Run the frontend application**:
+   	```bash
+    	npm run dev
 	
 	
 ### Key Sections Explained
@@ -57,27 +54,12 @@ The system is divided into four main layers:
 
 This `README.md` provides a good foundation for the initial commit and explains the overall structure and guidelines for the project. You can update it later as the project evolves.
 
-### Key Design Principles
-
-This project follows Clean Code principles and Domain-Driven Design (DDD). Key considerations include:
-- Separation of Concerns: Each layer (Domain, Application, Infrastructure, API) has a clear and isolated responsibility.
-- Modularity: Each service, entity, and repository is designed to be independent and reusable.
-- SOLID Principles: The code follows object-oriented design principles to ensure maintainability and scalability.
-- Strategy Pattern: Used to handle the calculation of fees dynamically based on vehicle type.
-
-
-## Project Overview
-
-The **BidCalculation** project is designed to calculate the total price for a vehicle at an auction, including various dynamic fees based on the vehicle type (Common or Luxury). This project follows a **Domain-Driven Design (DDD)** approach, utilizing the **.NET 8.0** framework for backend services and **Vue.js 3 with TypeScript** for frontend development.
 
 ## Technologies
 
 - **Backend**: .NET 8.0 (C#)
-- **Frontend**: Vue.js 3, TypeScript, Pinia for state management
-- **Database**: SQLite
-- **Design Pattern**: Strategy pattern applied for fee calculation
-- **Architecture**: Domain-Driven Design (DDD)
-
+- **Frontend**: Vue.js 3, TypeScript
+- 
 ## Contribution Guidelines
 
 1. Fork the repository.
