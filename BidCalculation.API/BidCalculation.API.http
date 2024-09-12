@@ -1,6 +1,6 @@
-@BidCalculation.API_HostAddress = http://localhost:5164
+@BidCalculation.API_HostAddress = https://localhost:7209
 
-GET {{BidCalculation.API_HostAddress}}/weatherforecast/
+GET {{BidCalculation.API_HostAddress}}/BidCalculation/
 Accept: application/json
 
 ###
