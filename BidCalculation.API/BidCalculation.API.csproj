@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\BidCalculation.Domain\BidCalculation.Domain.csproj" />
   </ItemGroup>
-
 </Project>
