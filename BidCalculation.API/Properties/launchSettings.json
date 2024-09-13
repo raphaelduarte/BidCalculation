@@ -1,21 +1,13 @@
 {
   "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
+    "BidCalculation.API": {
+      "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "sslPort": 44357
-    },
-    "BidCalculation.API": {
-      "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:7209;http://localhost:5164",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      "applicationUrl": "https://localhost:7209"
     }
   }
 }
